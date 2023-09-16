@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
     private void GameWon()
     {
         //TODO Add GameWinningScreen
-        SceneManager.LoadScene("WinScene");
-        Debug.Log("Won Game");
+        SceneManager.LoadScene("WinScene"); 
     }
 }

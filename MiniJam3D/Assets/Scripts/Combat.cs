@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class Combat : MonoBehaviour, IDamageable
@@ -78,7 +79,7 @@ public class Combat : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        //TODO Add Sceneswitch?
+        SceneManager.LoadScene("LoseScene");
         Destroy(gameObject);
     }
 }
