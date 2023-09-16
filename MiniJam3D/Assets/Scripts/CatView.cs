@@ -9,21 +9,21 @@ public class CatView : MonoBehaviour
     public float _attackDamage = 50f;
     
     private Animator _animator;
-    private GameObject player;
-    private Vector3[] wanderPoints;
-    private int currentPoint = 0;
-    private bool isChasingPlayer = false;
-    private float canAttack = 0f;
+    private GameObject _player;
+    private Vector3[] _wanderPoints;
+    private int _currentPoint = 0;
+    private bool _isChasingPlayer = false;
+    private float _canAttack = 0f;
 
-    private Vector3 currentForward = Vector3.forward;
+    private Vector3 _currentForward = Vector3.forward;
     public float rotationSpeed = 1.0f;
-    private float angleThreshold = 5.0f;
+    private const float AngleThreshold = 5.0f;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        wanderPoints = GenerateWanderPoints();
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _wanderPoints = GenerateWanderPoints();
     }
 
     private Vector3[] GenerateWanderPoints()
@@ -39,16 +39,16 @@ public class CatView : MonoBehaviour
 
     private void Update()
     {
-        float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+        float distanceToPlayer = Vector3.Distance(_player.transform.position, transform.position);
         
-        if (distanceToPlayer <= detectionRadius && !isChasingPlayer)
+        if (distanceToPlayer <= detectionRadius && !_isChasingPlayer)
         {
-            isChasingPlayer = true;
+            _isChasingPlayer = true;
         }
         
-        if (isChasingPlayer)
+        if (_isChasingPlayer)
         {
-            MoveTowards(player.transform.position);
+            MoveTowards(_player.transform.position);
 
             if (distanceToPlayer <= attackRange)
             {
@@ -57,10 +57,10 @@ public class CatView : MonoBehaviour
         }
         else
         {
-            MoveTowards(wanderPoints[currentPoint]);
-            if (Vector3.Distance(transform.position, wanderPoints[currentPoint]) < 0.1f)
+            MoveTowards(_wanderPoints[_currentPoint]);
+            if (Vector3.Distance(transform.position, _wanderPoints[_currentPoint]) < 0.1f)
             {
-                currentPoint = (currentPoint + 1) % 3; // Loop through the points
+                _currentPoint = (_currentPoint + 1) % 3; // Loop through the points
             }
         }
     }
@@ -73,14 +73,14 @@ public class CatView : MonoBehaviour
         float angleToTarget = Vector3.Angle(transform.forward, direction);
 
         // Wenn der Gegner den Spieler verfolgt, bewegt er sich immer
-        if(isChasingPlayer)
+        if(_isChasingPlayer)
         {
             transform.position += direction * speed * Time.deltaTime;
             _animator.SetBool("isMoving", true);
         }
         else
         {
-            if (angleToTarget <= angleThreshold)
+            if (angleToTarget <= AngleThreshold)
             {
                 transform.position += direction * speed * Time.deltaTime;
                 _animator.SetBool("isMoving", true);
@@ -91,8 +91,8 @@ public class CatView : MonoBehaviour
             }
         }
 
-        currentForward = Vector3.Slerp(currentForward, direction, rotationSpeed * Time.deltaTime);
-        transform.forward = currentForward;
+        _currentForward = Vector3.Slerp(_currentForward, direction, rotationSpeed * Time.deltaTime);
+        transform.forward = _currentForward;
     }
 
     private void AttackPlayer()
@@ -103,12 +103,12 @@ public class CatView : MonoBehaviour
 
     public void CanAttackPlayer(float canAttackValue)
     {
-        canAttack = canAttackValue;
+        _canAttack = canAttackValue;
     }
 
     public void RequestDoDamageToPlayer(IDamageable player)
     {
-        if (canAttack == 1f)
+        if (_canAttack == 1f)
             player.TakeDamage(_attackDamage);
     }
 }
