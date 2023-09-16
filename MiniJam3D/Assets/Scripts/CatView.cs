@@ -79,7 +79,6 @@ public class CatView : MonoBehaviour
 
                     Vector3 direction = (target.position - transform.position).normalized;
                     direction.y = 0;  // ensure we only move horizontally
-                    rb.velocity = direction * speed;
                     transform.forward = direction;  // make the cat face the player
                 }
                 else
