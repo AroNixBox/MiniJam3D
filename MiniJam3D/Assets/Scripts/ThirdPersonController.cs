@@ -110,6 +110,9 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
+        public AudioClip Swing;
+        public AudioClip Squeal;
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -387,6 +390,15 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        private void OnSwing(AnimationEvent animationEvent)
+        {
+            AudioSource.PlayClipAtPoint(Swing, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+        }
+        private void OnPickUp(AnimationEvent animationEvent)
+        {
+            AudioSource.PlayClipAtPoint(Squeal, transform.TransformPoint(_controller.center), FootstepAudioVolume);
         }
     }
 }
