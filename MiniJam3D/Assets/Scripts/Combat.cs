@@ -60,6 +60,7 @@ public class Combat : MonoBehaviour, IDamageable
     {
         if (other.tag.Equals("Pickable"))
         {
+            _animator.SetTrigger("Pickup");
             Destroy(other.GameObject());
             GameManager.Instance.ObjectiveCollected();
         }
