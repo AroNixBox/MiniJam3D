@@ -1113,22 +1113,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 436613368, guid: 97878a7ee27e0a241bf726cfcf5a2671, type: 3}
-      propertyPath: m_Volume
-      value: 0.846
-      objectReference: {fileID: 0}
-    - target: {fileID: 436613369, guid: 97878a7ee27e0a241bf726cfcf5a2671, type: 3}
-      propertyPath: m_Pitch
-      value: 0.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 436613369, guid: 97878a7ee27e0a241bf726cfcf5a2671, type: 3}
-      propertyPath: m_Volume
-      value: 0.879
-      objectReference: {fileID: 0}
-    - target: {fileID: 436613370, guid: 97878a7ee27e0a241bf726cfcf5a2671, type: 3}
-      propertyPath: m_Pitch
-      value: 0.75
-      objectReference: {fileID: 0}
     - target: {fileID: 6400949537711714314, guid: 97878a7ee27e0a241bf726cfcf5a2671,
         type: 3}
       propertyPath: m_RootOrder
@@ -1188,11 +1172,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 6400949538198553171, guid: 97878a7ee27e0a241bf726cfcf5a2671,
-        type: 3}
-      propertyPath: rotationSpeed
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97878a7ee27e0a241bf726cfcf5a2671, type: 3}
