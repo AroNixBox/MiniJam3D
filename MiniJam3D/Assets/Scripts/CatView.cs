@@ -15,12 +15,15 @@ public class CatView : MonoBehaviour
     private bool isChasingPlayer = false;
     private float canAttack = 0f;
 
+    private Vector3 currentForward = Vector3.forward;
+    public float rotationSpeed = 1.0f;
+    private float angleThreshold = 5.0f;
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         wanderPoints = GenerateWanderPoints();
-        //transform.position = wanderPoints[0];
     }
 
     private Vector3[] GenerateWanderPoints()
@@ -66,8 +69,30 @@ public class CatView : MonoBehaviour
     {
         Vector3 direction = (target - transform.position).normalized;
         direction.y = 0;
-        transform.position += direction * speed * Time.deltaTime;
-        transform.forward = direction;
+
+        float angleToTarget = Vector3.Angle(transform.forward, direction);
+
+        // Wenn der Gegner den Spieler verfolgt, bewegt er sich immer
+        if(isChasingPlayer)
+        {
+            transform.position += direction * speed * Time.deltaTime;
+            _animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            if (angleToTarget <= angleThreshold)
+            {
+                transform.position += direction * speed * Time.deltaTime;
+                _animator.SetBool("isMoving", true);
+            }
+            else
+            {
+                _animator.SetBool("isMoving", false);
+            }
+        }
+
+        currentForward = Vector3.Slerp(currentForward, direction, rotationSpeed * Time.deltaTime);
+        transform.forward = currentForward;
     }
 
     private void AttackPlayer()
