@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     private void GameWon()
     {
         //TODO Add GameWinningScreen
+        SceneManager.LoadScene("WinScene");
         Debug.Log("Won Game");
     }
 }
