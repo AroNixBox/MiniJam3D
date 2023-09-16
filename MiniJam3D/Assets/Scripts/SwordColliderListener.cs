@@ -2,8 +2,7 @@ using System;
 using UnityEngine;
 
 public class SwordColliderListener : MonoBehaviour
-{
-    public event Action<Collider> OnSwordTriggerEnter;
+{ 
     [SerializeField] private Combat _combat;
 
     private void OnTriggerStay(Collider other)
