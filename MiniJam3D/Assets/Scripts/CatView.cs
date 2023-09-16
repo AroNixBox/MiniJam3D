@@ -8,6 +8,11 @@ public class CatView : MonoBehaviour
     public float range;
     public float radius;
     public float speed;
+    public float attackRange = 2.0f;  // Distance at which the zombie will attack the player
+    private Animator _animator;
+    [SerializeField] private float _attackDamage = 50f;
+    private float canAttack = 0f;
+    
 
     public GameObject Mouse;
     private Rigidbody rb;
@@ -24,6 +29,7 @@ public class CatView : MonoBehaviour
 
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         Mouse = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
         StartCoroutine(FOVRoutine());
@@ -36,8 +42,7 @@ public class CatView : MonoBehaviour
         {
             MoveTowardsPlayer();
         }
-        
-        if (!InView)
+        else
         {
             MoveToPosition();
         }
@@ -95,9 +100,33 @@ public class CatView : MonoBehaviour
 
     private void MoveTowardsPlayer()
     {
+        float distanceToPlayer = Vector3.Distance(Mouse.transform.position, transform.position);
+
+        // If the zombie is close enough, it will attack the player
+        if (distanceToPlayer <= attackRange)
+        {
+            AttackPlayer();
+            return;
+        }
+
         Vector3 direction = (Mouse.transform.position - transform.position).normalized;
         direction.y = 0;  // Ensure movement is only horizontal
         transform.position += direction * speed * Time.deltaTime;
+    }
+
+    private void AttackPlayer()
+    {
+        _animator.SetTrigger("isAttacking");
+    }
+
+    public void CanAttackPlayer(float canAttackValue)
+    {
+        canAttack = canAttackValue;
+    }
+    public void RequestDoDamageToPlayer(IDamageable player)
+    {
+        if(canAttack == 1f)
+            player.TakeDamage(_attackDamage);
     }
 
     private void MoveToPosition()
