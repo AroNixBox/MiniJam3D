@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -52,6 +53,15 @@ public class Combat : MonoBehaviour, IDamageable
             {
                 enemy.TakeDamage(damageAmount);
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Pickable"))
+        {
+            Destroy(other.GameObject());
+            GameManager.Instance.ObjectiveCollected();
         }
     }
 
