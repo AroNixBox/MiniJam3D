@@ -15,6 +15,7 @@ public class Combat : MonoBehaviour, IDamageable
     [SerializeField] private float maxHealth;
     private float _currentHealth;
     [SerializeField] private float damageAmount;
+    [SerializeField] private AudioSource pickUpSoundEffect;
 
     private void Start()
     {
@@ -62,6 +63,7 @@ public class Combat : MonoBehaviour, IDamageable
         if (other.tag.Equals("Pickable"))
         {
             _animator.SetTrigger("Pickup");
+            pickUpSoundEffect.Play();
             Destroy(other.GameObject());
             GameManager.Instance.ObjectiveCollected();
         }
