@@ -70,6 +70,7 @@ public class Combat : MonoBehaviour, IDamageable
     public void TakeDamage(float hitDamageAmount)
     {
         _currentHealth -= hitDamageAmount;
+        Debug.Log($"Player took {hitDamageAmount} and has now {_currentHealth}HP left");
         //TODO Add GetHitEffects/ Anims
         if (_currentHealth <= 0f)
         {
