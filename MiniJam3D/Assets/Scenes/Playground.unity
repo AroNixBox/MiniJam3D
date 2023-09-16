@@ -1188,11 +1188,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mouse
       objectReference: {fileID: 0}
-    - target: {fileID: 4987462800164424416, guid: 864923f06ee17434597131b3e14abaf4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.978
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 864923f06ee17434597131b3e14abaf4, type: 3}
 --- !u!114 &4416926083347132239 stripped
