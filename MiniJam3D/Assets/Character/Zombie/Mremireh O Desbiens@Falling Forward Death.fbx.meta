@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2478a115492952f4fab4eddf6e74619e
+guid: 8b5a482d077fba94d96ddd3d9b7ec9f3
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Falling Forward Death
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 78
+      lastFrame: 77
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
