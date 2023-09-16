@@ -7,9 +7,10 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 {
     private float _currentHealth;
     [SerializeField] private float maxHealth;
-
+    private Animator _animator;
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         _currentHealth = maxHealth;
     }
 
@@ -24,6 +25,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        Destroy(gameObject);
+        GetComponent<CatView>().enabled = false;
+        _animator.SetBool("Die", true);
+        Destroy(gameObject, 1f);
     }
 }
