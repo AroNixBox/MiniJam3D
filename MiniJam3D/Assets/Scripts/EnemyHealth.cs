@@ -36,7 +36,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         moanAudioSource.Stop();
         _collider.enabled = false;
         _rb.isKinematic = true;
-        GetComponent<CatView>().enabled = false;
+        GetComponent<EnemyController>().enabled = false;
         _animator.SetBool("Die", true);
         Destroy(gameObject, 5f);
     }

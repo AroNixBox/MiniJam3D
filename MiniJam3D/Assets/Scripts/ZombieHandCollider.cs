@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZombieHandCollider : MonoBehaviour
 {
-    [SerializeField] private CatView catComponent;
+    [SerializeField] private EnemyController catComponent;
 
     private void OnTriggerEnter(Collider other)
     {
